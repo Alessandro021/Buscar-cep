@@ -22,11 +22,15 @@ export default function App() {
 
       try {
         const response = await api.get(`/${cep}/json`)
+        if( response.data.erro){
+          alert("O CEP digitado não existe, digite um CEP correto!")
+          return
+        }
         setCepUser(response.data);
         Keyboard.dismiss();//força o teclado a fechar
         
       } catch (error) {
-        alert("CEP digitado não encontrado")
+        alert("CEP incompleto")
       }
     }
 
@@ -36,11 +40,11 @@ export default function App() {
       <View style={{alignItems: 'center'}}>
         <Text style={styles.text}>Digite o seu CEP</Text>
         <TextInput style={styles.input}
-          placeholder="Ex: 123456789"
+          placeholder="Ex: 12345678"
           value={cep}
           onChangeText={(texto)=> setCep(texto)}
           keyboardType="numeric"
-          maxLength={9}
+          maxLength={8}
           ref={inputRef}
         />
       </View>
@@ -66,7 +70,7 @@ export default function App() {
           <Text style={styles.itemText}>Cidade: <Text style={styles.textoConteudo}>{cepUser.localidade}</Text></Text>
           <Text style={styles.itemText}>CEP:  <Text style={styles.textoConteudo}>{cepUser.cep}</Text></Text>
           <Text style={styles.itemText}>logradouro: <Text style={styles.textoConteudo}>{cepUser.logradouro}</Text></Text>
-          <Text style={styles.itemText}>Complemento: <Text style={styles.textoConteudo}>{cepUser.complemento}</Text></Text>
+          {/* <Text style={styles.itemText}>Complemento: <Text style={styles.textoConteudo}>{cepUser.complemento}</Text></Text> */}
           <Text style={styles.itemText}>Bairro: <Text style={styles.textoConteudo}>{cepUser.bairro}</Text></Text>
           <Text style={styles.itemText}>Estado: <Text style={styles.textoConteudo}>{cepUser.uf}</Text></Text>
           <Text style={styles.itemText}>DDD: <Text style={styles.textoConteudo}>{cepUser.ddd}</Text></Text>
@@ -130,7 +134,7 @@ const styles = StyleSheet.create({
   },
   textoConteudo:{
     fontSize: 22,
-    fontWeight: 'bold',
+    fontWeight: '900',
     color: "#1d75cd"
   }
 
