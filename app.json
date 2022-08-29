@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "buscar-cpf",
-    "slug": "buscar-cpf",
+    "name": "buscar-cep",
+    "slug": "buscar-cep",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
